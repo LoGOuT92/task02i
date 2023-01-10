@@ -1,43 +1,59 @@
 import * as React from "react";
-import { numberInputMask } from "../helpers/numberInputMask";
+import { numberInputMask } from "../utils/numberInputMask";
+import "../App.css";
 
 interface INumberINputProps {
-  idProducts: string;
-  setIdProducts: (val: string) => void;
-  //   fetchSingleData: () => void;
+  placeholder?: string;
+  type?: string;
+  filteredProductId: string;
+  setFilteredProductId: (val: string) => void;
+  fetchSinglProduct: () => void;
+  fetchProducts: () => void;
 }
 
 const NumberINput: React.FunctionComponent<INumberINputProps> = ({
-  idProducts,
-  setIdProducts,
-  //   fetchSingleData,
+  placeholder,
+  type,
+  filteredProductId,
+  setFilteredProductId,
+  fetchSinglProduct,
+  fetchProducts,
 }) => {
   const ref = React.useRef<HTMLInputElement>(null);
 
   const NumberInputHandler = () => {
     if (ref.current) {
+      //checking only numbers
       const checkNumber = numberInputMask(ref.current.value);
+      //max input lenght 4
       if (ref.current.value.length > 4) {
         return;
       }
+      //if everything is set value
       if (checkNumber) {
-        setIdProducts(ref.current.value);
+        setFilteredProductId(ref.current.value);
       }
+      //if the user cleared the entire value
+      //clear input and fetch all products
       if (ref.current.value.length === 0) {
-        setIdProducts("");
+        setFilteredProductId("");
+        fetchProducts();
       }
     } else return;
   };
 
   return (
-    <input
-      className="form-control"
-      type="text"
-      ref={ref}
-      //   onBlur={fetchSingleData}
-      value={idProducts}
-      onChange={() => NumberInputHandler()}
-    ></input>
+    <>
+      <input
+        className="numeric-input"
+        type={type}
+        ref={ref}
+        onBlur={() => fetchSinglProduct()}
+        value={filteredProductId}
+        onChange={() => NumberInputHandler()}
+        placeholder={placeholder}
+      ></input>
+    </>
   );
 };
 
