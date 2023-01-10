@@ -1,3 +1,11 @@
+:root {
+  --white: #ffffff;
+  --purple: rgba(152,46,120);
+  --dark-blue: rgba(21,31,44);
+  --red: rgb(241, 12, 12);
+  --black: rgb(0, 0, 0);
+}
+
 .App {
   text-align: center;
   display: flex;
@@ -5,30 +13,105 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  background: var(--purple);
+  background: linear-gradient(0deg, var(--purple) 0%, var(--dark-blue) 47%);
+  min-height: 100vh;
+  
+}
+.label-error{
+  color: var(--red);
+  padding: 10px;
+  font-weight: 600;
+}
+.content{
+  padding:20px;
+  border-radius: 10px;
+}
+.numeric-input{
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 10px;
 }
 .modal{
-  border: 1px solid red;
-  background-color: black;
-  position: absolute; 
+    border: 2px solid var(--white);
+    background-color: var(--dark-blue);
+    position: absolute; 
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
+    padding: 30px;
+    border-radius: 10px;
+  }
+  .modal__close-modal{
+    right: -5px;
+    top: -5%;
+    position: absolute;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .modal__svg{
+    width: 25px;
+    height: 25px;
+    color: var(--white);
+  }
+  .modal__svg:hover{
+    color: var(--red);
+  }
+  .modal__label{
     display: flex;
-    flex-direction: column;
-}
-.close{
-  margin-left: auto;
-  padding: 5px;
-  cursor: pointer;
-}
-svg{
-  width: 25px;
-  height: 25px;
-}
-svg:hover{
-  color: red;
-}
-.row{
-  padding: 10px;
-}
+    flex-wrap: wrap;
+    font-size: 1.2rem;
+    font-weight: 600;
+    gap: 10px;
+    padding: 25px;
+    border-radius: 10px;
+    background-color: currentColor;
+    width: max-content;
 
+  }
+  .modal__label__col{
+    color: var(--black);
+    font-weight: 600;
+  }
+  .table{
+    border: 2px solid var(--white);
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding:15px;
+  }
+  .table th{
+    padding: 20px;
+  }
+  .table--head-row{
+    color: var(--white);
+  }
+  .table--row{
+    transition: transform .3s;
+    padding: 20px;
+    cursor: pointer;
+  }
+  .table--row:hover{
+    transform:scale(1.1)
+  }
+  .page-button{
+    padding: 15px;
+    cursor: pointer;
+  }
+  .page-button svg{
+    width: 24px;
+    height: 24px;
+    color:var(--black);
+  }
+  
+  @media (max-width: 450px) {
+    .modal{
+      padding: 25px;
+    }
+    .test:hover{
+      transform:scale(1)
+    }
+}
