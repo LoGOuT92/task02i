@@ -15,6 +15,7 @@ const TableItem: React.FunctionComponent<ITableItemProps> = ({
 }) => {
   const openModal = () => {
     setIsModalOpen(true);
+    // transfer product info to modal
     setData(product);
   };
 
