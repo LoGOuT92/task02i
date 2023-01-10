@@ -1,29 +1,29 @@
 import * as React from "react";
-import { Idata } from "../App";
+import { IProduct } from "../App";
 import { useState } from "react";
 import Modal from "./Modal";
-import Row from "./row";
-
+import TableItem from "./TableItem";
+import "../App.css";
 interface ITableProps {
-  products: Idata[];
+  products: IProduct[];
 }
 
 const Table: React.FunctionComponent<ITableProps> = ({ products }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [data, setData] = useState<Idata | null>(null);
+  const [data, setData] = useState<IProduct | null>(null);
   return (
-    <div>
-      <table>
+    <>
+      <table className="table">
         <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">year</th>
+          <tr className="table--head-row">
+            <th>Id</th>
+            <th>Name</th>
+            <th>year</th>
           </tr>
         </thead>
         <tbody>
           {products.map((product) => (
-            <Row
+            <TableItem
               product={product}
               setIsModalOpen={setIsModalOpen}
               setData={(val) => setData(val)}
@@ -36,7 +36,7 @@ const Table: React.FunctionComponent<ITableProps> = ({ products }) => {
         setIsModalOpen={(val) => setIsModalOpen(val)}
         data={data}
       />
-    </div>
+    </>
   );
 };
 
