@@ -106,6 +106,9 @@
     height: 24px;
     color:var(--black);
   }
+  .label-loading{
+    color: white;
+  }
   
   @media (max-width: 450px) {
     .modal{
