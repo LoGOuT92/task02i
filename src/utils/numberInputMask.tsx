@@ -1,4 +1,4 @@
 export const numberInputMask = (val: string): boolean => {
-  let re = /^\d+$/;
+  let re: RegExp = /^\d+$/;
   return re.test(val);
 };

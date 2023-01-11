@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./App.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import NumberINput from "./components/NumericInput";
 import Table from "./components/Table";
 
@@ -18,10 +18,11 @@ const URL = "https://reqres.in/api/{resource}";
 const App: React.FunctionComponent = () => {
   const itemsPerPage = 5;
   const [filteredProductId, setFilteredProductId] = useState<string>("");
-  const [page, setPage] = useState<number>(1);
-  const [totalPages, setTotalPages] = useState<number>(0);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const [products, setProducts] = useState<IProduct[]>([]);
   const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState(true);
 
   const fetchProducts = async () => {
     try {
@@ -39,6 +40,7 @@ const App: React.FunctionComponent = () => {
         throw new Error("something went wrong...");
       }
     }
+    setLoading(false);
   };
 
   const nextPage = () => {
@@ -50,7 +52,11 @@ const App: React.FunctionComponent = () => {
     //return in first  page
     if (page <= 1) return;
     setPage((prev) => prev - 1);
+    fetchProducts();
   };
+  useEffect(() => {
+    fetchProducts();
+  }, []);
   useEffect(() => {
     fetchProducts();
   }, [page]);
@@ -58,7 +64,9 @@ const App: React.FunctionComponent = () => {
   const fetchSinglProduct = async () => {
     if (filteredProductId) {
       try {
-        const data = await axios.get(`${URL}/${filteredProductId}`);
+        const data = await axios.get<AxiosResponse>(
+          `${URL}/${filteredProductId}`
+        );
         setProducts([data.data.data]);
         setPage(1);
         setTotalPages(1);
@@ -88,8 +96,9 @@ const App: React.FunctionComponent = () => {
         type="text"
         placeholder="Find product by id"
       />
-      {error ? (
-        <label className="label-error">{error}</label>
+      {error && <label className="label-error">{error}</label>}
+      {loading ? (
+        <label className="label-loading">Loading...</label>
       ) : (
         <div className="content">
           <Table products={products} />

@@ -22,8 +22,9 @@ const Table: React.FunctionComponent<ITableProps> = ({ products }) => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {products.map((product, index) => (
             <TableItem
+              key={index}
               product={product}
               setIsModalOpen={setIsModalOpen}
               setData={(val) => setData(val)}
