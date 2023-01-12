@@ -18,9 +18,8 @@ const Modal: React.FunctionComponent<IModalProps> = ({
 
   return (
     <div
-      className="modal"
+      className={`modal --${isModalOpen ? "open" : "closed"}`}
       ref={modalRef}
-      style={{ display: isModalOpen ? "flex" : "none" }}
     >
       <div className="modal__close-modal" onClick={() => setIsModalOpen(false)}>
         <svg className="modal__svg">

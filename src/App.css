@@ -46,6 +46,12 @@
     padding: 30px;
     border-radius: 10px;
   }
+  .modal.--open{
+      display: flex;
+    }
+  .modal.--closed{
+      display: none;
+    }
   .modal__close-modal{
     right: -5px;
     top: -5%;
@@ -89,12 +95,12 @@
   .table--head-row{
     color: var(--white);
   }
-  .table--row{
+  .table__row{
     transition: transform .3s;
     padding: 20px;
     cursor: pointer;
   }
-  .table--row:hover{
+  .table__row:hover{
     transform:scale(1.1)
   }
   .page-button{
@@ -111,10 +117,14 @@
   }
   
   @media (max-width: 450px) {
-    .modal{
-      padding: 25px;
+    .content{
+      padding: 0px;
     }
-    .test:hover{
+    .modal{
+      padding: 15px;
+    }
+    .table__row:hover{
       transform:scale(1)
     }
+
 }

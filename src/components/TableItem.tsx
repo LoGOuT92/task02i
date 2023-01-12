@@ -24,7 +24,7 @@ const TableItem: React.FunctionComponent<ITableItemProps> = ({
       key={product.id}
       style={{ backgroundColor: product.color }}
       onClick={() => openModal()}
-      className="table--row"
+      className="table__row"
     >
       <th>{product.id}</th>
       <th>{product.name}</th>
