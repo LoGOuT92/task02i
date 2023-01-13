@@ -45,6 +45,7 @@ const NumberINput: React.FunctionComponent<INumberINputProps> = ({
   return (
     <>
       <input
+        test-id="numeric-input"
         className="numeric-input"
         type={type}
         ref={ref}
