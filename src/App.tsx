@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import "./App.css";
 import { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
@@ -44,15 +44,12 @@ const App: React.FunctionComponent = () => {
   };
 
   const nextPage = () => {
-    //return in last page
     if (totalPages === page) return;
     setPage((prev) => prev + 1);
   };
   const previousPage = () => {
-    //return in first  page
     if (page <= 1) return;
     setPage((prev) => prev - 1);
-    fetchProducts();
   };
   useEffect(() => {
     fetchProducts();
